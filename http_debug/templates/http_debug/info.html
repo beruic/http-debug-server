@@ -8,72 +8,27 @@
             add the parameter to the current page (does not work for POSTed pages).</p>
     {% endif %}
 
-    {% if request.GET %}
+    {% if get_dict %}
         <h2>GET</h2>
 
-        <div class="table-responsive">
-            <table class="table table-sm table-striped">
-                <thead class="thead-dark">
-                <tr>
-                    <th>Key</th>
-                    <th>Value</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for key, value in request.GET.items %}
-                    <tr>
-                        <td>{{ key }}</td>
-                        <td>{{ value }}</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
+        {% with dictionary=get_dict %}
+            {% include 'http_debug/dictionary_table.html' %}
+        {% endwith %}
 
     {% endif %}
 
-    {% if request.POST %}
+    {% if post_dict %}
         <h2>POST</h2>
 
-        <div class="table-responsive">
-            <table class="table table-sm table-striped">
-                <thead class="thead-dark">
-                <tr>
-                    <th>Key</th>
-                    <th>Value</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for key, value in request.POST.items %}
-                    <tr>
-                        <td>{{ key }}</td>
-                        <td>{{ value }}</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
+        {% with dictionary=post_dict %}
+            {% include 'http_debug/dictionary_table.html' %}
+        {% endwith %}
 
     {% endif %}
 
     <h2>META</h2>
-    <div class="table-responsive">
-        <table class="table table-sm table-striped">
-            <thead class="thead-dark">
-            <tr>
-                <th>Key</th>
-                <th>Value</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for key, value in filtered_meta_data.items %}
-                <tr>
-                    <td>{{ key }}</td>
-                    <td>{{ value }}</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
+    {% with dictionary=filtered_meta_data %}
+        {% include 'http_debug/dictionary_table.html' %}
+    {% endwith %}
 
 {% endblock %}
