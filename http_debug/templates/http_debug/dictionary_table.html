@@ -9,9 +9,22 @@
         <tbody>
         {% for key, value in dictionary.items %}
             <tr>
-                <td>{{ key }}</td>
-                <td>{{ value }}</td>
+                <td rowspan="{{ value|length }}">{{ key }}</td>
+                <td>
+                    {# First value #}
+                    {{ value|first }}
+                </td>
             </tr>
+            {# Remainindg values #}
+            {% for v in value %}
+                {% if not forloop.first %}
+                    <tr>
+                        <td>
+                            {{ v }}
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
         {% endfor %}
         </tbody>
     </table>
