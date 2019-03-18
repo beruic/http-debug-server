@@ -1,0 +1,23 @@
+### Docker
+.dockerignore
+#Dockerfile
+
+### Git
+.git
+.gitignore
+
+### Jetbrains IDE
+.idea
+
+### Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+
+### Project specific
+db.sqlite3
+.env
+.env_template
+staticfiles
+reset_development.sh

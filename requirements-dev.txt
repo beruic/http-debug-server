@@ -1,0 +1,2 @@
+# ipython for easier to use shell
+ipython

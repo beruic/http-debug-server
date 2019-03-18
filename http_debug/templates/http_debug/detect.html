@@ -1,0 +1,79 @@
+{% extends "http_debug/base.html" %}
+{% block title %}{% endblock %}
+{% block content %}
+    <h1>Request data</h1>
+
+    {% if all_url %}
+        <p>For more information, add the <code>all</code> parameter to query. Click <a href="{{ all_url }}">here</a> to
+            add the parameter to the current page (does not work for POSTed pages).</p>
+    {% endif %}
+
+    {% if request.GET %}
+        <h2>GET</h2>
+
+        <div class="table-responsive">
+            <table class="table table-sm table-striped">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Key</th>
+                    <th>Value</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for key, value in request.GET.items %}
+                    <tr>
+                        <td>{{ key }}</td>
+                        <td>{{ value }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    {% endif %}
+
+    {% if request.POST %}
+        <h2>POST</h2>
+
+        <div class="table-responsive">
+            <table class="table table-sm table-striped">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Key</th>
+                    <th>Value</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for key, value in request.POST.items %}
+                    <tr>
+                        <td>{{ key }}</td>
+                        <td>{{ value }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    {% endif %}
+
+    <h2>META</h2>
+    <div class="table-responsive">
+        <table class="table table-sm table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th>Key</th>
+                <th>Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for key, value in filtered_meta_data.items %}
+                <tr>
+                    <td>{{ key }}</td>
+                    <td>{{ value }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

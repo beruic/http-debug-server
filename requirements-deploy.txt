@@ -1,0 +1,2 @@
+# uWSGI web server
+uwsgi==2.0.18
