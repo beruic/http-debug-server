@@ -7,7 +7,7 @@ def detect(request):
     if 'all' in request.GET:
         return render(
             request,
-            'http_debug/detect.html',
+            'http_debug/info.html',
             context={
                 'filtered_meta_data': request.META
             }
@@ -31,7 +31,7 @@ def detect(request):
 
         return render(
             request,
-            'http_debug/detect.html',
+            'http_debug/info.html',
             context={
                 'filtered_meta_data': filtered_meta_data,
                 'all_url': all_url
