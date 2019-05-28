@@ -19,7 +19,15 @@ def detect(request):
                     k: [v]
                     for k, v in request.META.items()
                     if k not in USELESS_META_DATA_KEYS
-                }
+                },
+                'get_dict': {
+                    k: request.GET.getlist(k)
+                    for k in request.GET.keys()
+                },
+                'post_dict': {
+                    k: ','.join(request.POST.getlist(k))
+                    for k in request.POST.keys()
+                },
             }
         )
     else:
