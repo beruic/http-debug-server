@@ -1,6 +1,12 @@
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
+USELESS_META_DATA_KEYS = {
+    'wsgi.input',
+    'wsgi.errors',
+    'wsgi.file_wrapper'
+}
+
 
 @csrf_exempt
 def detect(request):
@@ -9,7 +15,11 @@ def detect(request):
             request,
             'http_debug/info.html',
             context={
-                'filtered_meta_data': request.META
+                'filtered_meta_data': {
+                    k: [v]
+                    for k, v in request.META.items()
+                    if k not in USELESS_META_DATA_KEYS
+                }
             }
         )
     else:
