@@ -44,7 +44,7 @@ def detect(request):
 
         query = request.GET.copy()
         query['all'] = ''
-        all_url = request.build_absolute_uri(request.path) + '?' + query.urlencode()
+        all_url = request.path + '?' + query.urlencode()
 
         return render(
             request,
