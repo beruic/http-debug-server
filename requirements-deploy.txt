@@ -1,2 +1,2 @@
 # uWSGI web server
-uwsgi==2.0.18
+uwsgi==2.0.19.1
